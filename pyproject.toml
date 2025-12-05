@@ -1,0 +1,21 @@
+[project]
+name = "bikerly-api"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "beanie>=2.0.1",
+    "fastapi[standard]>=0.121.3",
+    "jose>=1.0.0",
+    "loguru>=0.7.3",
+    "motor>=3.7.1",
+    "passlib[bcrypt]>=1.7.4",
+    "pydantic[email]>=2.12.4",
+    "pyjwt>=2.10.1",
+    "pymongo>=4.15.4",
+    "python-dotenv>=1.2.1",
+    "python-jose[cryptography]>=3.5.0",
+    "uuid>=1.30",
+    "uvicorn>=0.38.0",
+]
