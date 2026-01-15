@@ -41,10 +41,10 @@ async def register(
         try:
             hashed_password_value = hash_password(user_in.password)
         except ValueError as e:
-            logger.error(f"Password hashing error: {str(e)}")
+            logger.warning(f"Password hashing failed: {str(e)}")
             raise ValidationError(
                 message="Password processing failed",
-                detail="Password is too long. Maximum 72 bytes allowed.",
+                detail=str(e),
             )
 
         user = User(
@@ -74,7 +74,7 @@ async def register(
     except ValidationError:
         raise
     except Exception as e:
-        logger.error(f"Unexpected error during registration: {str(e)}", exc_info=True)
+        logger.error(f"Unexpected error during registration: {str(e)}")
         raise DatabaseError(
             message="Failed to create user",
             detail="An error occurred while creating your account. Please try again later.",
@@ -135,7 +135,7 @@ async def login(
     except AuthenticationError:
         raise
     except Exception as e:
-        logger.error(f"Unexpected error during login: {str(e)}", exc_info=True)
+        logger.error(f"Unexpected error during login: {str(e)}")
         raise AuthenticationError(
             message="Login failed",
             detail="An error occurred during login. Please try again later.",

@@ -1,17 +1,18 @@
 from datetime import datetime
 from typing import Optional, Callable
-
 from fastapi import Depends
 from fastapi.security import OAuth2PasswordBearer
 from jose import jwt, JWTError
 from passlib.context import CryptContext
+import bcrypt
 
 from app.services.config import JWT_SECRET_KEY, JWT_ALGORITHM, get_access_token_expires
 from app.models.user import User, UserPublic
 from app.utils.exceptions import AuthenticationError, AuthorizationError
 from app.utils.logger import logger
 
-pwd_context = CryptContext(schemes=['bcrypt'], deprecated='auto')
+# Initialize CryptContext with explicit bcrypt backend
+pwd_context = CryptContext(schemes=['bcrypt'], deprecated='auto', bcrypt__rounds=12)
 
 oauth_scheme = OAuth2PasswordBearer(tokenUrl="/api/auth/login")
 
@@ -27,21 +28,32 @@ def hash_password(password: str) -> str:
         Hashed password string
         
     Raises:
-        ValueError: If password is too long (>72 bytes)
+        ValueError: If password is too long (>72 bytes) or hashing fails
     """
-
+    if not password:
+        raise ValueError("Password cannot be empty")
+    
     try:
+        # Encode password to bytes to check length
         raw_bytes = password.encode("utf-8")
-        logger.info(f"Password length: {len(raw_bytes)} bytes")
-        # Truncate password if it's longer than 72 bytes (bcrypt limit)
-        if len(raw_bytes) > 72:
-            print("Password exceeds 72 bytes, truncating")
-            logger.warning("Password exceeds 72 bytes, truncating")
-            password = password[:72]
-        return pwd_context.hash(password)
+        byte_length = len(raw_bytes)
+
+        # Bcrypt has a 72-byte limit, truncate if necessary
+        if byte_length > 72:
+            logger.warning(f"Password exceeds bcrypt 72-byte limit ({byte_length} bytes), truncating")
+            password = raw_bytes[:72].decode("utf-8", errors="ignore")
+        
+        # Use bcrypt directly to avoid passlib issues
+        hashed = bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt(rounds=12))
+        return hashed.decode("utf-8")
+        
+    except ValueError as e:
+        # Re-raise ValueError as-is (expected errors)
+        raise
     except Exception as e:
-        logger.error(f"Error hashing password: {str(e)}", exc_info=True)
-        raise ValueError(f"Password hashing failed: {str(e)}")
+        # Log unexpected errors without full stack trace
+        logger.error(f"Error hashing password: {str(e)}")
+        raise ValueError("Password hashing failed. Please try again.")
 
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
@@ -56,9 +68,10 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
         True if password matches, False otherwise
     """
     try:
-        return pwd_context.verify(plain_password, hashed_password)
+        # Use bcrypt directly for verification
+        return bcrypt.checkpw(plain_password.encode("utf-8"), hashed_password.encode("utf-8"))
     except Exception as e:
-        logger.error(f"Error verifying password: {str(e)}", exc_info=True)
+        logger.warning(f"Error verifying password: {str(e)}")
         return False
 
 
@@ -80,7 +93,7 @@ def create_access_token(data: dict) -> str:
         logger.debug(f"Access token created for: {data.get('sub')}")
         return token
     except Exception as e:
-        logger.error(f"Error creating access token: {str(e)}", exc_info=True)
+        logger.error(f"Error creating access token: {str(e)}")
         raise
 
 

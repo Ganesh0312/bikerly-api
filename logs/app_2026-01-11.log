@@ -1,0 +1,626 @@
+2026-01-11 17:36:24 | INFO     | app.routes.auth:register:29 | Registration attempt for email: user@example.com | {}
+2026-01-11 17:36:24 | INFO     | app.services.authSecurity:hash_password:35 | Password length: 6 bytes | {}
+2026-01-11 17:36:24 | WARNING  | logging:callHandlers:1762 | (trapped) error reading bcrypt version | {}
+Traceback (most recent call last):
+
+  File "<string>", line 1, in <module>
+  File "/usr/lib/python3.12/multiprocessing/spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+               │     │   └ 4
+               │     └ 7
+               └ <function _main at 0x70114ffe19e0>
+  File "/usr/lib/python3.12/multiprocessing/spawn.py", line 135, in _main
+    return self._bootstrap(parent_sentinel)
+           │    │          └ 4
+           │    └ <function BaseProcess._bootstrap at 0x7011500bbce0>
+           └ <SpawnProcess name='SpawnProcess-1' parent=35676 started>
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+    │    └ <function BaseProcess.run at 0x7011500bb240>
+    └ <SpawnProcess name='SpawnProcess-1' parent=35676 started>
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {'config': <uvicorn.config.Config object at 0x70114f485b80>, 'target': <bound method Server.run of <uvicorn.server.Server obj...
+    │    │        │    │        └ <SpawnProcess name='SpawnProcess-1' parent=35676 started>
+    │    │        │    └ ()
+    │    │        └ <SpawnProcess name='SpawnProcess-1' parent=35676 started>
+    │    └ <function subprocess_started at 0x70114f2a1f80>
+    └ <SpawnProcess name='SpawnProcess-1' parent=35676 started>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+    │              └ [<socket.socket fd=3, family=2, type=1, proto=0, laddr=('127.0.0.1', 8000)>]
+    └ <bound method Server.run of <uvicorn.server.Server object at 0x70114f2327b0>>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/uvicorn/server.py", line 67, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+           │           │    │             │                      │    │      └ <function Config.get_loop_factory at 0x70114f491120>
+           │           │    │             │                      │    └ <uvicorn.config.Config object at 0x70114f485b80>
+           │           │    │             │                      └ <uvicorn.server.Server object at 0x70114f2327b0>
+           │           │    │             └ [<socket.socket fd=3, family=2, type=1, proto=0, laddr=('127.0.0.1', 8000)>]
+           │           │    └ <function Server.serve at 0x70114f2a1300>
+           │           └ <uvicorn.server.Server object at 0x70114f2327b0>
+           └ <function run at 0x70114fb62c00>
+  File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           │      │   └ <coroutine object Server.serve at 0x70114f2159a0>
+           │      └ <function Runner.run at 0x70114fbc2340>
+           └ <asyncio.runners.Runner object at 0x70114f4852b0>
+  File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<Server.serve() running at /home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/s...
+           │    │     └ <cyfunction Loop.run_until_complete at 0x70114f2d3700>
+           │    └ <uvloop.Loop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x70114f4852b0>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/starlette/middleware/base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+          │    │   │      │                      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.send_no_error at 0x701146e62840>
+          │    │   │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x701146f1d080>
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x70114cb4c560>
+          └ <app.utils.rate_limit.RateLimitMiddleware object at 0x70114cb4c500>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+          │                            │    │    │     │      │        └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.send_no_error at 0x701146e62840>
+          │                            │    │    │     │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x701146f1d080>
+          │                            │    │    │     └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │                            │    │    └ <starlette.requests.Request object at 0x701146e3c620>
+          │                            │    └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x70114cb4c530>
+          │                            └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x70114cb4c560>
+          └ <function wrap_app_handling_exceptions at 0x70114e034860>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x701146e6d120>
+          │   │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x701146f1d080>
+          │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x70114cb4c530>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x701146e6d120>
+          │    │   │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x701146f1d080>
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <fastapi.routing.APIRouter object at 0x70114cb240b0>
+          └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x70114cb4c530>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/starlette/routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x701146e6d120>
+          │    │                │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x701146f1d080>
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <bound method Router.app of <fastapi.routing.APIRouter object at 0x70114cb240b0>>
+          └ <fastapi.routing.APIRouter object at 0x70114cb240b0>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/starlette/routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+          │     │      │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x701146e6d120>
+          │     │      │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x701146f1d080>
+          │     │      └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │     └ <function Route.handle at 0x70114e035e40>
+          └ APIRoute(path='/api/auth/register', name='register', methods=['POST'])
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/starlette/routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x701146e6d120>
+          │    │   │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x701146f1d080>
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <function request_response.<locals>.app at 0x70114cb1b420>
+          └ APIRoute(path='/api/auth/register', name='register', methods=['POST'])
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 125, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+          │                            │    │        │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x701146e6d120>
+          │                            │    │        │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x701146f1d080>
+          │                            │    │        └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │                            │    └ <starlette.requests.Request object at 0x701146e70590>
+          │                            └ <function request_response.<locals>.app.<locals>.app at 0x701146e6d1c0>
+          └ <function wrap_app_handling_exceptions at 0x70114e034860>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x701146e6d300>
+          │   │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x701146f1d080>
+          │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          └ <function request_response.<locals>.app.<locals>.app at 0x701146e6d1c0>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 111, in app
+    response = await f(request)
+                     │ └ <starlette.requests.Request object at 0x701146e70590>
+                     └ <function get_request_handler.<locals>.app at 0x70114cb1ab60>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 391, in app
+    raw_response = await run_endpoint_function(
+                         └ <function run_endpoint_function at 0x70114e037ce0>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 290, in run_endpoint_function
+    return await dependant.call(**values)
+                 │         │      └ {'_': None, 'user_in': UserCreate(email='user@example.com', user_name='user1', phone_number='9146096429', country_code='91', ...
+                 │         └ <function register at 0x70114cb19c60>
+                 └ Dependant(path_params=[], query_params=[], header_params=[], cookie_params=[], body_params=[ModelField(field_info=Body(Pydant...
+
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/app/routes/auth.py", line 42, in register
+    hashed_password_value = hash_password(user_in.password)
+                            │             │       └ 'string'
+                            │             └ UserCreate(email='user@example.com', user_name='user1', phone_number='9146096429', country_code='91', password='string', name...
+                            └ <function hash_password at 0x70114cb198a0>
+
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/app/services/authSecurity.py", line 41, in hash_password
+    return pwd_context.hash(password)
+           │           │    └ 'string'
+           │           └ <function CryptContext.hash at 0x70114cca5b20>
+           └ <CryptContext at 0x70114cda5e20>
+
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/passlib/context.py", line 2258, in hash
+    return record.hash(secret, **kwds)
+           │      │    │         └ {}
+           │      │    └ 'string'
+           │      └ <classmethod(<function GenericHandler.hash at 0x70114cc7b380>)>
+           └ <class 'passlib.handlers.bcrypt.<customized bcrypt hasher>'>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/passlib/utils/handlers.py", line 779, in hash
+    self.checksum = self._calc_checksum(secret)
+    │    │          │    │              └ 'string'
+    │    │          │    └ <function _NoBackend._calc_checksum at 0x70114cb18720>
+    │    │          └ <passlib.handlers.bcrypt.<customized bcrypt hasher> object at 0x701146e71220>
+    │    └ None
+    └ <passlib.handlers.bcrypt.<customized bcrypt hasher> object at 0x701146e71220>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 591, in _calc_checksum
+    self._stub_requires_backend()
+    │    └ <classmethod(<function BackendMixin._stub_requires_backend at 0x70114cc95760>)>
+    └ <passlib.handlers.bcrypt.<customized bcrypt hasher> object at 0x701146e71220>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2254, in _stub_requires_backend
+    cls.set_backend()
+    │   └ <classmethod(<function BackendMixin.set_backend at 0x70114cc954e0>)>
+    └ <class 'passlib.handlers.bcrypt.<customized bcrypt hasher>'>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2156, in set_backend
+    return owner.set_backend(name, dryrun=dryrun)
+           │     │           │            └ False
+           │     │           └ 'any'
+           │     └ <classmethod(<function BackendMixin.set_backend at 0x70114cc954e0>)>
+           └ <class 'passlib.handlers.bcrypt.bcrypt'>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2163, in set_backend
+    return cls.set_backend(name, dryrun=dryrun)
+           │   │           │            └ False
+           │   │           └ 'bcrypt'
+           │   └ <classmethod(<function BackendMixin.set_backend at 0x70114cc954e0>)>
+           └ <class 'passlib.handlers.bcrypt.bcrypt'>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2188, in set_backend
+    cls._set_backend(name, dryrun)
+    │   │            │     └ False
+    │   │            └ 'bcrypt'
+    │   └ <classmethod(<function SubclassBackendMixin._set_backend at 0x70114cc958a0>)>
+    └ <class 'passlib.handlers.bcrypt.bcrypt'>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2311, in _set_backend
+    super(SubclassBackendMixin, cls)._set_backend(name, dryrun)
+          │                     │                 │     └ False
+          │                     │                 └ 'bcrypt'
+          │                     └ <class 'passlib.handlers.bcrypt.bcrypt'>
+          └ <class 'passlib.utils.handlers.SubclassBackendMixin'>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2224, in _set_backend
+    ok = loader(**kwds)
+         │        └ {'name': 'bcrypt', 'dryrun': False}
+         └ <bound method _BcryptBackend._load_backend_mixin of <class 'passlib.handlers.bcrypt._BcryptBackend'>>
+> File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              └ <module 'bcrypt' from '/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/bcrypt/__init__.py'>
+
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2026-01-11 17:36:24 | ERROR    | app.services.authSecurity:hash_password:43 | Error hashing password: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72]) | {'exc_info': True}
+2026-01-11 17:36:24 | ERROR    | app.routes.auth:register:44 | Password hashing error: Password hashing failed: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72]) | {}
+2026-01-11 17:36:24 | ERROR    | app.utils.error_handler:app_exception_handler:16 | Application error: Password processing failed | {'extra': {'error_code': 'VALIDATION_ERROR', 'status_code': 400, 'path': '/api/auth/register', 'method': 'POST'}}
+2026-01-11 17:44:29 | INFO     | main:lifespan:25 | 🚀 Starting Bikerly API | {}
+2026-01-11 17:44:54 | INFO     | app.routes.auth:register:29 | Registration attempt for email: user@example.com | {}
+2026-01-11 17:44:54 | INFO     | app.services.authSecurity:hash_password:36 | Password length: 6 bytes | {}
+2026-01-11 17:44:54 | WARNING  | logging:callHandlers:1762 | (trapped) error reading bcrypt version | {}
+Traceback (most recent call last):
+
+  File "<string>", line 1, in <module>
+  File "/usr/lib/python3.12/multiprocessing/spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+               │     │   └ 4
+               │     └ 7
+               └ <function _main at 0x70efbf3e19e0>
+  File "/usr/lib/python3.12/multiprocessing/spawn.py", line 135, in _main
+    return self._bootstrap(parent_sentinel)
+           │    │          └ 4
+           │    └ <function BaseProcess._bootstrap at 0x70efbf4bbce0>
+           └ <SpawnProcess name='SpawnProcess-1' parent=36503 started>
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+    │    └ <function BaseProcess.run at 0x70efbf4bb240>
+    └ <SpawnProcess name='SpawnProcess-1' parent=36503 started>
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {'config': <uvicorn.config.Config object at 0x70efbe885b80>, 'target': <bound method Server.run of <uvicorn.server.Server obj...
+    │    │        │    │        └ <SpawnProcess name='SpawnProcess-1' parent=36503 started>
+    │    │        │    └ ()
+    │    │        └ <SpawnProcess name='SpawnProcess-1' parent=36503 started>
+    │    └ <function subprocess_started at 0x70efbe6a1f80>
+    └ <SpawnProcess name='SpawnProcess-1' parent=36503 started>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+    │              └ [<socket.socket fd=3, family=2, type=1, proto=0, laddr=('127.0.0.1', 8000)>]
+    └ <bound method Server.run of <uvicorn.server.Server object at 0x70efbe6327b0>>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/uvicorn/server.py", line 67, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+           │           │    │             │                      │    │      └ <function Config.get_loop_factory at 0x70efbe891120>
+           │           │    │             │                      │    └ <uvicorn.config.Config object at 0x70efbe885b80>
+           │           │    │             │                      └ <uvicorn.server.Server object at 0x70efbe6327b0>
+           │           │    │             └ [<socket.socket fd=3, family=2, type=1, proto=0, laddr=('127.0.0.1', 8000)>]
+           │           │    └ <function Server.serve at 0x70efbe6a1300>
+           │           └ <uvicorn.server.Server object at 0x70efbe6327b0>
+           └ <function run at 0x70efbef62c00>
+  File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           │      │   └ <coroutine object Server.serve at 0x70efbe6159a0>
+           │      └ <function Runner.run at 0x70efbefc2340>
+           └ <asyncio.runners.Runner object at 0x70efbe8852b0>
+  File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<Server.serve() running at /home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/s...
+           │    │     └ <cyfunction Loop.run_until_complete at 0x70efbe6d3700>
+           │    └ <uvloop.Loop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x70efbe8852b0>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/starlette/middleware/base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+          │    │   │      │                      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.send_no_error at 0x70efb8322a20>
+          │    │   │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x70efba4667a0>
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x70efbe631310>
+          └ <app.utils.rate_limit.RateLimitMiddleware object at 0x70efbbeec050>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+          │                            │    │    │     │      │        └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.send_no_error at 0x70efb8322a20>
+          │                            │    │    │     │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x70efba4667a0>
+          │                            │    │    │     └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │                            │    │    └ <starlette.requests.Request object at 0x70efbc38bbf0>
+          │                            │    └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x70efbc2fc860>
+          │                            └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x70efbe631310>
+          └ <function wrap_app_handling_exceptions at 0x70efbd428860>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x70efb8329300>
+          │   │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x70efba4667a0>
+          │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x70efbc2fc860>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x70efb8329300>
+          │    │   │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x70efba4667a0>
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <fastapi.routing.APIRouter object at 0x70efbbf21430>
+          └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x70efbc2fc860>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/starlette/routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x70efb8329300>
+          │    │                │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x70efba4667a0>
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <bound method Router.app of <fastapi.routing.APIRouter object at 0x70efbbf21430>>
+          └ <fastapi.routing.APIRouter object at 0x70efbbf21430>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/starlette/routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+          │     │      │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x70efb8329300>
+          │     │      │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x70efba4667a0>
+          │     │      └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │     └ <function Route.handle at 0x70efbd429e40>
+          └ APIRoute(path='/api/auth/register', name='register', methods=['POST'])
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/starlette/routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x70efb8329300>
+          │    │   │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x70efba4667a0>
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <function request_response.<locals>.app at 0x70efbbf17420>
+          └ APIRoute(path='/api/auth/register', name='register', methods=['POST'])
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 125, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+          │                            │    │        │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x70efb8329300>
+          │                            │    │        │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x70efba4667a0>
+          │                            │    │        └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │                            │    └ <starlette.requests.Request object at 0x70efb82e9d30>
+          │                            └ <function request_response.<locals>.app.<locals>.app at 0x70efb83293a0>
+          └ <function wrap_app_handling_exceptions at 0x70efbd428860>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x70efb83294e0>
+          │   │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x70efba4667a0>
+          │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          └ <function request_response.<locals>.app.<locals>.app at 0x70efb83293a0>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 111, in app
+    response = await f(request)
+                     │ └ <starlette.requests.Request object at 0x70efb82e9d30>
+                     └ <function get_request_handler.<locals>.app at 0x70efbbf16b60>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 391, in app
+    raw_response = await run_endpoint_function(
+                         └ <function run_endpoint_function at 0x70efbd42bce0>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 290, in run_endpoint_function
+    return await dependant.call(**values)
+                 │         │      └ {'_': None, 'user_in': UserCreate(email='user@example.com', user_name='user1', phone_number='9146096429', country_code='91', ...
+                 │         └ <function register at 0x70efbbf15c60>
+                 └ Dependant(path_params=[], query_params=[], header_params=[], cookie_params=[], body_params=[ModelField(field_info=Body(Pydant...
+
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/app/routes/auth.py", line 42, in register
+    hashed_password_value = hash_password(user_in.password)
+                            │             │       └ 'string'
+                            │             └ UserCreate(email='user@example.com', user_name='user1', phone_number='9146096429', country_code='91', password='string', name...
+                            └ <function hash_password at 0x70efbbf158a0>
+
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/app/services/authSecurity.py", line 42, in hash_password
+    return pwd_context.hash(password)
+           │           │    └ 'string'
+           │           └ <function CryptContext.hash at 0x70efbc09db20>
+           └ <CryptContext at 0x70efbc2fd400>
+
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/passlib/context.py", line 2258, in hash
+    return record.hash(secret, **kwds)
+           │      │    │         └ {}
+           │      │    └ 'string'
+           │      └ <classmethod(<function GenericHandler.hash at 0x70efbc06f380>)>
+           └ <class 'passlib.handlers.bcrypt.<customized bcrypt hasher>'>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/passlib/utils/handlers.py", line 779, in hash
+    self.checksum = self._calc_checksum(secret)
+    │    │          │    │              └ 'string'
+    │    │          │    └ <function _NoBackend._calc_checksum at 0x70efbbf14720>
+    │    │          └ <passlib.handlers.bcrypt.<customized bcrypt hasher> object at 0x70efbbf44cb0>
+    │    └ None
+    └ <passlib.handlers.bcrypt.<customized bcrypt hasher> object at 0x70efbbf44cb0>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 591, in _calc_checksum
+    self._stub_requires_backend()
+    │    └ <classmethod(<function BackendMixin._stub_requires_backend at 0x70efbc08d760>)>
+    └ <passlib.handlers.bcrypt.<customized bcrypt hasher> object at 0x70efbbf44cb0>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2254, in _stub_requires_backend
+    cls.set_backend()
+    │   └ <classmethod(<function BackendMixin.set_backend at 0x70efbc08d4e0>)>
+    └ <class 'passlib.handlers.bcrypt.<customized bcrypt hasher>'>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2156, in set_backend
+    return owner.set_backend(name, dryrun=dryrun)
+           │     │           │            └ False
+           │     │           └ 'any'
+           │     └ <classmethod(<function BackendMixin.set_backend at 0x70efbc08d4e0>)>
+           └ <class 'passlib.handlers.bcrypt.bcrypt'>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2163, in set_backend
+    return cls.set_backend(name, dryrun=dryrun)
+           │   │           │            └ False
+           │   │           └ 'bcrypt'
+           │   └ <classmethod(<function BackendMixin.set_backend at 0x70efbc08d4e0>)>
+           └ <class 'passlib.handlers.bcrypt.bcrypt'>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2188, in set_backend
+    cls._set_backend(name, dryrun)
+    │   │            │     └ False
+    │   │            └ 'bcrypt'
+    │   └ <classmethod(<function SubclassBackendMixin._set_backend at 0x70efbc08d8a0>)>
+    └ <class 'passlib.handlers.bcrypt.bcrypt'>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2311, in _set_backend
+    super(SubclassBackendMixin, cls)._set_backend(name, dryrun)
+          │                     │                 │     └ False
+          │                     │                 └ 'bcrypt'
+          │                     └ <class 'passlib.handlers.bcrypt.bcrypt'>
+          └ <class 'passlib.utils.handlers.SubclassBackendMixin'>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2224, in _set_backend
+    ok = loader(**kwds)
+         │        └ {'name': 'bcrypt', 'dryrun': False}
+         └ <bound method _BcryptBackend._load_backend_mixin of <class 'passlib.handlers.bcrypt._BcryptBackend'>>
+> File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              └ <module 'bcrypt' from '/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/bcrypt/__init__.py'>
+
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2026-01-11 17:44:54 | ERROR    | app.services.authSecurity:hash_password:44 | Error hashing password: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72]) | {'exc_info': True}
+2026-01-11 17:44:54 | ERROR    | app.routes.auth:register:44 | Password hashing error: Password hashing failed: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72]) | {}
+2026-01-11 17:44:54 | ERROR    | app.utils.error_handler:app_exception_handler:16 | Application error: Password processing failed | {'extra': {'error_code': 'VALIDATION_ERROR', 'status_code': 400, 'path': '/api/auth/register', 'method': 'POST'}}
+2026-01-11 22:42:28 | INFO     | main:lifespan:30 | 🛑 Shutting down Bikerly API | {}
+2026-01-11 22:42:37 | INFO     | main:lifespan:25 | 🚀 Starting Bikerly API | {}
+2026-01-11 22:42:47 | INFO     | app.routes.auth:register:29 | Registration attempt for email: user@example.com | {}
+2026-01-11 22:42:47 | INFO     | app.services.authSecurity:hash_password:36 | Password length: 6 bytes | {}
+2026-01-11 22:42:47 | WARNING  | logging:callHandlers:1762 | (trapped) error reading bcrypt version | {}
+Traceback (most recent call last):
+
+  File "<string>", line 1, in <module>
+  File "/usr/lib/python3.12/multiprocessing/spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+               │     │   └ 4
+               │     └ 7
+               └ <function _main at 0x75c1662e59e0>
+  File "/usr/lib/python3.12/multiprocessing/spawn.py", line 135, in _main
+    return self._bootstrap(parent_sentinel)
+           │    │          └ 4
+           │    └ <function BaseProcess._bootstrap at 0x75c1663bfce0>
+           └ <SpawnProcess name='SpawnProcess-1' parent=39721 started>
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+    │    └ <function BaseProcess.run at 0x75c1663bf240>
+    └ <SpawnProcess name='SpawnProcess-1' parent=39721 started>
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    │    │        │    │        │    └ {'config': <uvicorn.config.Config object at 0x75c166150c80>, 'target': <bound method Server.run of <uvicorn.server.Server obj...
+    │    │        │    │        └ <SpawnProcess name='SpawnProcess-1' parent=39721 started>
+    │    │        │    └ ()
+    │    │        └ <SpawnProcess name='SpawnProcess-1' parent=39721 started>
+    │    └ <function subprocess_started at 0x75c1655a1f80>
+    └ <SpawnProcess name='SpawnProcess-1' parent=39721 started>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+    │              └ [<socket.socket fd=3, family=2, type=1, proto=0, laddr=('127.0.0.1', 8000)>]
+    └ <bound method Server.run of <uvicorn.server.Server object at 0x75c1655325a0>>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/uvicorn/server.py", line 67, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+           │           │    │             │                      │    │      └ <function Config.get_loop_factory at 0x75c165791120>
+           │           │    │             │                      │    └ <uvicorn.config.Config object at 0x75c166150c80>
+           │           │    │             │                      └ <uvicorn.server.Server object at 0x75c1655325a0>
+           │           │    │             └ [<socket.socket fd=3, family=2, type=1, proto=0, laddr=('127.0.0.1', 8000)>]
+           │           │    └ <function Server.serve at 0x75c1655a1300>
+           │           └ <uvicorn.server.Server object at 0x75c1655325a0>
+           └ <function run at 0x75c16590ec00>
+  File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           │      │   └ <coroutine object Server.serve at 0x75c1655159a0>
+           │      └ <function Runner.run at 0x75c16596e340>
+           └ <asyncio.runners.Runner object at 0x75c1655e9910>
+  File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<Server.serve() running at /home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/s...
+           │    │     └ <cyfunction Loop.run_until_complete at 0x75c1655d3700>
+           │    └ <uvloop.Loop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x75c1655e9910>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/starlette/middleware/base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+          │    │   │      │                      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.send_no_error at 0x75c160212840>
+          │    │   │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x75c1612d5080>
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x75c162dec200>
+          └ <app.utils.rate_limit.RateLimitMiddleware object at 0x75c162dec320>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+          │                            │    │    │     │      │        └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.send_no_error at 0x75c160212840>
+          │                            │    │    │     │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x75c1612d5080>
+          │                            │    │    │     └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │                            │    │    └ <starlette.requests.Request object at 0x75c1601ec6b0>
+          │                            │    └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x75c162f913d0>
+          │                            └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x75c162dec200>
+          └ <function wrap_app_handling_exceptions at 0x75c16432c860>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x75c160225120>
+          │   │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x75c1612d5080>
+          │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x75c162f913d0>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x75c160225120>
+          │    │   │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x75c1612d5080>
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <fastapi.routing.APIRouter object at 0x75c162e1d3d0>
+          └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x75c162f913d0>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/starlette/routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x75c160225120>
+          │    │                │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x75c1612d5080>
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <bound method Router.app of <fastapi.routing.APIRouter object at 0x75c162e1d3d0>>
+          └ <fastapi.routing.APIRouter object at 0x75c162e1d3d0>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/starlette/routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+          │     │      │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x75c160225120>
+          │     │      │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x75c1612d5080>
+          │     │      └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │     └ <function Route.handle at 0x75c16432de40>
+          └ APIRoute(path='/api/auth/register', name='register', methods=['POST'])
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/starlette/routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x75c160225120>
+          │    │   │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x75c1612d5080>
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │    └ <function request_response.<locals>.app at 0x75c162e13420>
+          └ APIRoute(path='/api/auth/register', name='register', methods=['POST'])
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 125, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+          │                            │    │        │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x75c160225120>
+          │                            │    │        │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x75c1612d5080>
+          │                            │    │        └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          │                            │    └ <starlette.requests.Request object at 0x75c16021c950>
+          │                            └ <function request_response.<locals>.app.<locals>.app at 0x75c1602251c0>
+          └ <function wrap_app_handling_exceptions at 0x75c16432c860>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+          │   │      │        └ <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x75c160225300>
+          │   │      └ <function BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.receive_or_disconnect at 0x75c1612d5080>
+          │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('127.0.0.1', 8000), 'cl...
+          └ <function request_response.<locals>.app.<locals>.app at 0x75c1602251c0>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 111, in app
+    response = await f(request)
+                     │ └ <starlette.requests.Request object at 0x75c16021c950>
+                     └ <function get_request_handler.<locals>.app at 0x75c162e12b60>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 391, in app
+    raw_response = await run_endpoint_function(
+                         └ <function run_endpoint_function at 0x75c16432fce0>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 290, in run_endpoint_function
+    return await dependant.call(**values)
+                 │         │      └ {'_': None, 'user_in': UserCreate(email='user@example.com', user_name='user1', phone_number='9146096429', country_code='91', ...
+                 │         └ <function register at 0x75c162e11c60>
+                 └ Dependant(path_params=[], query_params=[], header_params=[], cookie_params=[], body_params=[ModelField(field_info=Body(Pydant...
+
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/app/routes/auth.py", line 42, in register
+    hashed_password_value = hash_password(user_in.password)
+                            │             │       └ 'string'
+                            │             └ UserCreate(email='user@example.com', user_name='user1', phone_number='9146096429', country_code='91', password='string', name...
+                            └ <function hash_password at 0x75c162e118a0>
+
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/app/services/authSecurity.py", line 42, in hash_password
+    return pwd_context.hash(password)
+           │           │    └ 'string'
+           │           └ <function CryptContext.hash at 0x75c162f9db20>
+           └ <CryptContext at 0x75c16309e540>
+
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/passlib/context.py", line 2258, in hash
+    return record.hash(secret, **kwds)
+           │      │    │         └ {}
+           │      │    └ 'string'
+           │      └ <classmethod(<function GenericHandler.hash at 0x75c162f6f380>)>
+           └ <class 'passlib.handlers.bcrypt.<customized bcrypt hasher>'>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/passlib/utils/handlers.py", line 779, in hash
+    self.checksum = self._calc_checksum(secret)
+    │    │          │    │              └ 'string'
+    │    │          │    └ <function _NoBackend._calc_checksum at 0x75c162e10720>
+    │    │          └ <passlib.handlers.bcrypt.<customized bcrypt hasher> object at 0x75c162e44c50>
+    │    └ None
+    └ <passlib.handlers.bcrypt.<customized bcrypt hasher> object at 0x75c162e44c50>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 591, in _calc_checksum
+    self._stub_requires_backend()
+    │    └ <classmethod(<function BackendMixin._stub_requires_backend at 0x75c162f8d760>)>
+    └ <passlib.handlers.bcrypt.<customized bcrypt hasher> object at 0x75c162e44c50>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2254, in _stub_requires_backend
+    cls.set_backend()
+    │   └ <classmethod(<function BackendMixin.set_backend at 0x75c162f8d4e0>)>
+    └ <class 'passlib.handlers.bcrypt.<customized bcrypt hasher>'>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2156, in set_backend
+    return owner.set_backend(name, dryrun=dryrun)
+           │     │           │            └ False
+           │     │           └ 'any'
+           │     └ <classmethod(<function BackendMixin.set_backend at 0x75c162f8d4e0>)>
+           └ <class 'passlib.handlers.bcrypt.bcrypt'>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2163, in set_backend
+    return cls.set_backend(name, dryrun=dryrun)
+           │   │           │            └ False
+           │   │           └ 'bcrypt'
+           │   └ <classmethod(<function BackendMixin.set_backend at 0x75c162f8d4e0>)>
+           └ <class 'passlib.handlers.bcrypt.bcrypt'>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2188, in set_backend
+    cls._set_backend(name, dryrun)
+    │   │            │     └ False
+    │   │            └ 'bcrypt'
+    │   └ <classmethod(<function SubclassBackendMixin._set_backend at 0x75c162f8d8a0>)>
+    └ <class 'passlib.handlers.bcrypt.bcrypt'>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2311, in _set_backend
+    super(SubclassBackendMixin, cls)._set_backend(name, dryrun)
+          │                     │                 │     └ False
+          │                     │                 └ 'bcrypt'
+          │                     └ <class 'passlib.handlers.bcrypt.bcrypt'>
+          └ <class 'passlib.utils.handlers.SubclassBackendMixin'>
+  File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/passlib/utils/handlers.py", line 2224, in _set_backend
+    ok = loader(**kwds)
+         │        └ {'name': 'bcrypt', 'dryrun': False}
+         └ <bound method _BcryptBackend._load_backend_mixin of <class 'passlib.handlers.bcrypt._BcryptBackend'>>
+> File "/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              └ <module 'bcrypt' from '/home/ganesh/Projects/bikeraly/bikerly-api/.venv/lib/python3.12/site-packages/bcrypt/__init__.py'>
+
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2026-01-11 22:42:47 | ERROR    | app.services.authSecurity:hash_password:44 | Error hashing password: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72]) | {'exc_info': True}
+2026-01-11 22:42:47 | ERROR    | app.routes.auth:register:44 | Password hashing error: Password hashing failed: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72]) | {}
+2026-01-11 22:42:47 | ERROR    | app.utils.error_handler:app_exception_handler:16 | Application error: Password processing failed | {'extra': {'error_code': 'VALIDATION_ERROR', 'status_code': 400, 'path': '/api/auth/register', 'method': 'POST'}}
+2026-01-11 22:50:47 | INFO     | main:lifespan:30 | 🛑 Shutting down Bikerly API | {}
+2026-01-11 22:50:49 | INFO     | main:lifespan:25 | 🚀 Starting Bikerly API | {}
+2026-01-11 22:50:54 | INFO     | main:lifespan:25 | 🚀 Starting Bikerly API | {}
+2026-01-11 22:50:56 | INFO     | main:lifespan:25 | 🚀 Starting Bikerly API | {}
+2026-01-11 22:50:58 | INFO     | main:lifespan:25 | 🚀 Starting Bikerly API | {}
+2026-01-11 22:50:59 | INFO     | main:lifespan:30 | 🛑 Shutting down Bikerly API | {}
+2026-01-11 22:51:00 | INFO     | main:lifespan:25 | 🚀 Starting Bikerly API | {}
+2026-01-11 22:51:02 | INFO     | main:lifespan:25 | 🚀 Starting Bikerly API | {}
+2026-01-11 22:51:04 | INFO     | main:lifespan:25 | 🚀 Starting Bikerly API | {}
+2026-01-11 22:51:07 | INFO     | main:lifespan:30 | 🛑 Shutting down Bikerly API | {}
+2026-01-11 22:51:09 | INFO     | main:lifespan:25 | 🚀 Starting Bikerly API | {}
+2026-01-11 22:51:24 | INFO     | main:lifespan:25 | 🚀 Starting Bikerly API | {}
+2026-01-11 22:55:10 | INFO     | main:lifespan:30 | 🛑 Shutting down Bikerly API | {}
+2026-01-11 22:55:11 | INFO     | main:lifespan:25 | 🚀 Starting Bikerly API | {}
+2026-01-11 22:58:42 | INFO     | main:lifespan:30 | 🛑 Shutting down Bikerly API | {}
+2026-01-11 22:58:44 | INFO     | main:lifespan:25 | 🚀 Starting Bikerly API | {}
+2026-01-11 22:59:30 | INFO     | main:lifespan:30 | 🛑 Shutting down Bikerly API | {}
+2026-01-11 22:59:31 | INFO     | main:lifespan:25 | 🚀 Starting Bikerly API | {}
+2026-01-11 22:59:33 | INFO     | main:lifespan:25 | 🚀 Starting Bikerly API | {}
+2026-01-11 23:00:08 | INFO     | app.routes.auth:register:29 | Registration attempt for email: user@example.com | {}
+2026-01-11 23:00:08 | INFO     | app.routes.auth:register:61 | User registered successfully: user@example.com (ID: 6963de200c0347c571e42bfc) | {}
+2026-01-11 23:08:46 | INFO     | app.routes.auth:register:29 | Registration attempt for email: user@example.com | {}
+2026-01-11 23:08:46 | WARNING  | app.routes.auth:register:34 | Registration failed: Email already exists - user@example.com | {}
+2026-01-11 23:08:46 | ERROR    | app.utils.error_handler:app_exception_handler:16 | Application error: User with this email already exists | {'extra': {'error_code': 'CONFLICT_ERROR', 'status_code': 409, 'path': '/api/auth/register', 'method': 'POST'}}
+2026-01-11 23:10:19 | INFO     | app.routes.auth:login:100 | Login attempt for email: string | {}
+2026-01-11 23:10:20 | WARNING  | app.routes.auth:login:105 | Login failed: User not found - string | {}
+2026-01-11 23:10:20 | ERROR    | app.utils.error_handler:app_exception_handler:16 | Application error: Incorrect email or password | {'extra': {'error_code': 'AUTHENTICATION_ERROR', 'status_code': 401, 'path': '/api/auth/login', 'method': 'POST'}}
+2026-01-11 23:10:45 | INFO     | app.routes.auth:login:100 | Login attempt for email: user@example.com | {}
+2026-01-11 23:10:46 | INFO     | app.routes.auth:login:132 | User logged in successfully: user@example.com | {}

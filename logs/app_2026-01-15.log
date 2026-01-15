@@ -1,0 +1,10 @@
+2026-01-15 18:17:25 | INFO     | main:lifespan:25 | 🚀 Starting Bikerly API | {}
+2026-01-15 18:17:33 | INFO     | app.routes.auth:login:100 | Login attempt for email: string | {}
+2026-01-15 18:17:33 | WARNING  | app.routes.auth:login:105 | Login failed: User not found - string | {}
+2026-01-15 18:17:33 | ERROR    | app.utils.error_handler:app_exception_handler:16 | Application error: Incorrect email or password | {'extra': {'error_code': 'AUTHENTICATION_ERROR', 'status_code': 401, 'path': '/api/auth/login', 'method': 'POST'}}
+2026-01-15 18:17:46 | INFO     | app.routes.auth:login:100 | Login attempt for email: string@gmail.com | {}
+2026-01-15 18:17:47 | WARNING  | app.routes.auth:login:105 | Login failed: User not found - string@gmail.com | {}
+2026-01-15 18:17:47 | ERROR    | app.utils.error_handler:app_exception_handler:16 | Application error: Incorrect email or password | {'extra': {'error_code': 'AUTHENTICATION_ERROR', 'status_code': 401, 'path': '/api/auth/login', 'method': 'POST'}}
+2026-01-15 18:18:06 | INFO     | app.routes.auth:login:100 | Login attempt for email: string@gmail.com | {}
+2026-01-15 18:18:06 | WARNING  | app.routes.auth:login:105 | Login failed: User not found - string@gmail.com | {}
+2026-01-15 18:18:06 | ERROR    | app.utils.error_handler:app_exception_handler:16 | Application error: Incorrect email or password | {'extra': {'error_code': 'AUTHENTICATION_ERROR', 'status_code': 401, 'path': '/api/auth/login', 'method': 'POST'}}
