@@ -1,3 +1,0 @@
-2026-01-15 18:17:33 | ERROR    | app.utils.error_handler:app_exception_handler:16 | Application error: Incorrect email or password | {'extra': {'error_code': 'AUTHENTICATION_ERROR', 'status_code': 401, 'path': '/api/auth/login', 'method': 'POST'}}
-2026-01-15 18:17:47 | ERROR    | app.utils.error_handler:app_exception_handler:16 | Application error: Incorrect email or password | {'extra': {'error_code': 'AUTHENTICATION_ERROR', 'status_code': 401, 'path': '/api/auth/login', 'method': 'POST'}}
-2026-01-15 18:18:06 | ERROR    | app.utils.error_handler:app_exception_handler:16 | Application error: Incorrect email or password | {'extra': {'error_code': 'AUTHENTICATION_ERROR', 'status_code': 401, 'path': '/api/auth/login', 'method': 'POST'}}
